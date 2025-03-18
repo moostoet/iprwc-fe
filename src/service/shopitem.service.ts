@@ -22,7 +22,7 @@ export interface ShopItem {
   providedIn: 'root'
 })
 export class ShopItemService {
-  private authUrl = `${environment.apiUrl}/api/shopitems`;
+  private authUrl = `${environment.apiUrl}/shopitems`;
 
   constructor(private http: HttpClient) {}
 

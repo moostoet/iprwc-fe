@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class SignupService {
   // Change the URL as needed.
-  private registerUrl = `${environment.apiUrl}/api/users/register`;
+  private registerUrl = `${environment.apiUrl}/users/register`;
 
   constructor(private http: HttpClient) {}
 

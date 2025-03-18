@@ -33,7 +33,7 @@ export interface CartResponse {
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = `${environment.apiUrl}/api/cart`;
+  private apiUrl = `${environment.apiUrl}/cart`;
 
   private cartSubject = new BehaviorSubject<CartResponse | null>(null);
   public cart$ = this.cartSubject.asObservable();
