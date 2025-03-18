@@ -8,9 +8,7 @@ import { SignupService } from '../../../service/signup.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  // Include all necessary modules if using Angular Standalone components.
   imports: [ButtonModule, ReactiveFormsModule, CommonModule, MessageModule],
-  standalone: true
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
@@ -54,22 +52,18 @@ export class SignupComponent implements OnInit {
     };
   }
 
-  // Handy getter for easy access to form controls in the template.
   get f(): { [key: string]: AbstractControl } {
     return this.signupForm.controls;
   }
   
-  // Called when the user submits the signup form.
   onSubmit(): void {
     if (this.signupForm.invalid) {
       this.signupForm.markAllAsTouched();
       return;
     }
     
-    // Remove confirmPassword before sending to backend if needed.
     const { confirmPassword, ...signupData } = this.signupForm.value;
     
-    // Call the service to register the user.
     this.signupService.register(signupData).subscribe({
       next: response => {
         console.log('Registration successful!', response);

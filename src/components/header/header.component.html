@@ -1,6 +1,11 @@
 <main>
   <div class="h-32 flex items-center px-4 gap-3">
-    <h1 class="text-2xl font-bold flex-1">The Ball Shop</h1>
+    <div class="flex flex-row gap-5 flex-1 items-center font-bold">
+      <h1 class="text-2xl">The Ball Shop</h1>
+
+      <a [routerLink]="['/']" class="text-green-300">Shop</a>
+      <a *ngIf="authService.currentUser$.getValue()?.role?.includes('ADMIN')" [routerLink]="['/admin']" class="text-green-300">Admin</a>
+    </div>
 
     <ng-container *ngIf="authService.currentUser$ | async as user; else guest">
       <div>{{ user.firstName }}</div>
@@ -9,29 +14,29 @@
         <ng-template #item let-item class="flex flex-col gap-5">
           <div class="flex p-2 items-center">
             <span class="font-bold flex-1">{{ item.label }}</span>
-            
+
             <div class="flex items-center mr-2">
-              <button 
-                pButton 
-                icon="pi pi-minus" 
-                class="p-button-text p-button-sm" 
+              <button
+                pButton
+                icon="pi pi-minus"
+                class="p-button-text p-button-sm"
                 (click)="decrementQuantity($event, item)"
               ></button>
               <span class="mx-2">{{ item.quantity }}</span>
-              <button 
-                pButton 
-                icon="pi pi-plus" 
-                class="p-button-text p-button-sm" 
+              <button
+                pButton
+                icon="pi pi-plus"
+                class="p-button-text p-button-sm"
                 (click)="incrementQuantity($event, item)"
               ></button>
             </div>
-            
+
             <span>{{ item.price | currency : "EUR" : "symbol" }}</span>
-            
-            <button 
-              pButton 
-              icon="pi pi-trash" 
-              class="p-button-text p-button-danger p-button-sm ml-2" 
+
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-text p-button-danger p-button-sm ml-2"
               (click)="removeItem($event, item)"
             ></button>
           </div>

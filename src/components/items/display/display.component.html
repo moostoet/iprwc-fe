@@ -53,8 +53,8 @@
                   <button
                     pButton
                     icon="pi pi-shopping-cart"
-                    label="Buy Now"
-                    [disabled]="product.stock < 1"
+                    label="Add To Cart"
+                    [disabled]="product.stock < 1 || !this.authService.currentUser$.getValue()"
                     (click)="addToCart(product)"
                     class="flex-auto whitespace-nowrap"
                   ></button>

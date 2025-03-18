@@ -17,11 +17,9 @@ import { CartResponse, CartService } from '../../service/cart.service';
 export class HeaderComponent implements OnInit {
   cartItems = signal<CartResponse | null>(null);
 
-  // Convert cart items to menu items format using computed signal
   items = computed<MenuItem[]>(() => {
     const cItems = this.cartItems();
 
-    // Map cart items to menu items
     const menuItems = cItems?.items.map(item => ({
       label: item.itemName || `Product ${item.id}`,
       price: item.totalPrice,
@@ -35,7 +33,6 @@ export class HeaderComponent implements OnInit {
     }];
   });
 
-  // Compute total cost automatically when cart items change
   totalCost = computed(() => {
     let total = 0;
     const currentItems = this.items();
@@ -66,7 +63,6 @@ export class HeaderComponent implements OnInit {
     this.cartService.getCart().subscribe();
   }
 
-  // Get total count of all items in cart (for badge)
   getTotalItemsCount(): number {
     let count = 0;
     const cItems = this.cartItems()?.items || [];
@@ -75,19 +71,16 @@ export class HeaderComponent implements OnInit {
     });
     return count;
   }
-
-  // Increment item quantity
   incrementQuantity(event: Event, item: any): void {
-    event.stopPropagation(); // Prevent menu from closing
+    event.stopPropagation();
 
     this.cartService.updateItemQuantity(item.itemId, item.quantity + 1).subscribe(
       updatedCart => this.cartItems.set(updatedCart)
     );
   }
 
-  // Decrement item quantity
   decrementQuantity(event: Event, item: any): void {
-    event.stopPropagation(); // Prevent menu from closing
+    event.stopPropagation();
 
     if (item.quantity > 1) {
       this.cartService.updateItemQuantity(item.itemId, item.quantity - 1).subscribe(
@@ -98,9 +91,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  // Remove item from cart
   removeItem(event: Event, item: any): void {
-    event.stopPropagation(); // Prevent menu from closing
+    event.stopPropagation();
 
     this.cartService.removeItem(item.itemId).subscribe(
       updatedCart => this.cartItems.set(updatedCart)

@@ -7,5 +7,5 @@ import { DisplayComponent } from "../items/display/display.component";
   imports: [DisplayComponent],
 })
 export class HomeComponent {
-  // any logic or properties for the home page go here
+
 }

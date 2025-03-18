@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { CartService } from '../../../service/cart.service';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-item-display',
@@ -20,11 +21,11 @@ export class DisplayComponent implements OnInit {
 
   itemService = inject(ShopItemService);
   cartService = inject(CartService);
+  authService = inject(AuthService);
 
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    console.log('DisplayComponent initialized');
     this.itemService.getShopItems().subscribe(
       items => this.items.set(items)
     )

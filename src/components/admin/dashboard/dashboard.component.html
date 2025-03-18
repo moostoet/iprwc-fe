@@ -1,3 +1,113 @@
 <section>
-  You're an admin! Hooray!
+  <p-toast position="bottom-right" key="br"></p-toast>
+  <div class="px-4">
+    <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+    <h2 class="mt-5 font-bold">Actions</h2>
+    <div class="mt-2 flex flex-row gap-4">
+      <div>
+        <p-button
+          label="Create New Product"
+          (click)="showCreateDialog()"
+        ></p-button>
+        <p-dialog
+          header="Create New Product"
+          [modal]="true"
+          [(visible)]="createVisible"
+          [style]="{ width: '20vw' }"
+        >
+          <span class="p-text-secondary block mb-8">Create a new product.</span>
+          <div class="flex flex-col gap-4 mb-4">
+            <div class="flex flex-col gap-2">
+              <label for="name" class="font-semibold">Product Name</label>
+              <input
+                pInputText
+                type="text"
+                id="name"
+                [(ngModel)]="newName"
+                class="flex-auto w-100"
+                autocomplete="off"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label for="price" class="font-semibold">Productprijs</label>
+              <input
+                pInputText
+                type="number"
+                id="price"
+                [(ngModel)]="newPrice"
+                class="flex-auto w-100"
+                autocomplete="off"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label for="stock" class="font-semibold">Voorraad</label>
+              <input
+                pInputText
+                type="number"
+                id="stock"
+                [(ngModel)]="newStock"
+                class="flex-auto w-100"
+                autocomplete="off"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label for="image" class="font-semibold">Foto</label>
+              <input
+                pInputText
+                type="text"
+                id="image"
+                [(ngModel)]="newImage"
+                class="flex-auto w-100"
+                autocomplete="off"
+              />
+            </div>
+            <div>
+              <button
+                pButton
+                label="Create"
+                (click)="createNewProduct()"
+              ></button>
+            </div>
+          </div>
+        </p-dialog>
+      </div>
+      <div>
+        <p-button
+          label="Manage Products"
+          (click)="showManageDialog()"
+        ></p-button>
+        <p-dialog
+          header="Manage Products"
+          [modal]="true"
+          [(visible)]="manageVisible"
+          [style]="{ width: '20vw' }"
+        >
+          <span class="p-text-secondary block mb-8">Manage your products.</span>
+          <div>
+            <p-data-view #dv [value]="items()">
+              <ng-template #list let-items>
+                <div class="flex flex-col gap-4">
+                  <div *ngFor="let item of items; let first = first">
+                    <div class="flex flex-row items-center">
+                      <p class="flex-1 font-bold">{{ item.name }}</p>
+                      <P>{{ item.price | currency : "EUR" }} </P>
+                      <button
+                        pButton
+                        icon="pi pi-trash"
+                        [rounded]="true"
+                        [outlined]="true"
+                        class="ml-2"
+                        severity="danger"
+                        (click)="deleteProduct(item)"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </p-data-view>
+          </div>
+        </p-dialog>
+      </div>
+    </div>
+  </div>
 </section>

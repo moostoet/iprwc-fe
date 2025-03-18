@@ -2,12 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+export interface ShopItemRequest {
+  name: string;
+  price: number;
+  stock: number;
+  image: string;
+}
+
 export interface ShopItem {
   id: number;
   name: string;
   price: number;
   stock: number;
-  imageUrl: string;
+  image: string;
 }
 
 @Injectable({
@@ -24,5 +31,13 @@ export class ShopItemService {
 
   getShopItemById(id: number): Observable<ShopItem> {
     return this.http.get<ShopItem>(`${this.authUrl}/${id}`, { withCredentials: true });
+  }
+
+  createShopItem(shopItem: ShopItemRequest): Observable<ShopItem> {
+    return this.http.post<ShopItem>(`${this.authUrl}`, shopItem, { withCredentials: true });
+  }
+
+  deleteShopItem(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.authUrl}/${id}`, { withCredentials: true });
   }
 }

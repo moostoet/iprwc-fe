@@ -45,7 +45,6 @@ export class CartService {
   getCart(): Observable<CartResponse> {
     return this.http.get<CartResponse>(this.apiUrl, { withCredentials: true }).pipe(
       tap(cart => {
-        // Update the shared state when we get new data
         this.cartSubject.next(cart);
       })
     );
@@ -54,7 +53,6 @@ export class CartService {
   addToCart(request: CartItemRequest): Observable<CartResponse> {
     return this.http.post<CartResponse>(`${this.apiUrl}/items`, request, { withCredentials: true }).pipe(
       tap(cart => {
-        // Update the shared state when adding an item
         this.cartSubject.next(cart);
       })
     );
@@ -67,7 +65,6 @@ export class CartService {
       { withCredentials: true }
     ).pipe(
       tap(cart => {
-        // Update the shared state when changing quantity
         this.cartSubject.next(cart);
       })
     );
@@ -79,7 +76,6 @@ export class CartService {
       { withCredentials: true }
     ).pipe(
       tap(cart => {
-        // Update the shared state when removing an item
         this.cartSubject.next(cart);
       })
     );
