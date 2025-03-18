@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface CartItemRequest {
   productId: number;
@@ -32,7 +33,7 @@ export interface CartResponse {
   providedIn: 'root'
 })
 export class CartService {
-  private apiUrl = 'http://localhost:8080/api/cart';
+  private apiUrl = `${environment.apiUrl}/api/cart`;
 
   private cartSubject = new BehaviorSubject<CartResponse | null>(null);
   public cart$ = this.cartSubject.asObservable();

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface ShopItemRequest {
   name: string;
@@ -21,7 +22,7 @@ export interface ShopItem {
   providedIn: 'root'
 })
 export class ShopItemService {
-  private authUrl = 'http://localhost:8080/api/shopitems';
+  private authUrl = `${environment.apiUrl}/api/shopitems`;
 
   constructor(private http: HttpClient) {}
 

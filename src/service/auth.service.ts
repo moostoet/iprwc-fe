@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 export interface User {
   id: number;
@@ -15,7 +16,7 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  private authUrl = 'http://localhost:8080/api/users';
+  private authUrl = `${environment.apiUrl}/users`;
   public currentUser$ = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient) { }

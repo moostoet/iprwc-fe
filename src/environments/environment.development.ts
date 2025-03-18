@@ -1,1 +1,1 @@
-export const environment = { production: false, apiUrl: 'http://the-ball-shop.dev:8080/api' };
+export const environment = { production: false, apiUrl: 'http://the-ball-shop.dev:8080' };

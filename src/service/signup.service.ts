@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
   // Change the URL as needed.
-  private registerUrl = 'http://localhost:8080/api/users/register';
+  private registerUrl = `${environment.apiUrl}/api/users/register`;
 
   constructor(private http: HttpClient) {}
 
