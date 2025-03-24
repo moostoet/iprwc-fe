@@ -39,7 +39,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "primeicons/primeicons.css"
             ],
             "scripts": [],
             "outputMode": "static"
@@ -99,7 +100,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "primeicons/primeicons.css"
             ],
             "scripts": []
           }
