@@ -7,12 +7,10 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class SignupService {
-  // Change the URL as needed.
   private registerUrl = `${environment.apiUrl}/users/register`;
 
   constructor(private http: HttpClient) {}
 
-  // Register a new user by posting the signup data
   register(userData: any): Observable<any> {
     return this.http.post<any>(this.registerUrl, userData);
   }

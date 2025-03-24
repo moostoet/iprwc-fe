@@ -12,7 +12,13 @@ export const appConfig: ApplicationConfig = {
   providers: [provideAnimations(), provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), 
     providePrimeNG({
     theme: {
-      preset: Aura
-    }
+      preset: Aura,
+      options: {
+        cssLayer: {
+          name: 'primeng',
+          order: 'theme, base, primeng'
+        }
+      }
+    },
   }), provideHttpClient(withInterceptors([loggingInterceptor]))]
 };

@@ -23,6 +23,13 @@
             "polyfills": [
               "zone.js"
             ],
+            "loader": {
+              ".eot": "file",
+              ".woff": "file",
+              ".woff2": "file",
+              ".ttf": "file",
+              ".svg": "file"
+            },
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "css",
             "assets": [
@@ -43,7 +50,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",

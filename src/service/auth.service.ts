@@ -24,7 +24,6 @@ export class AuthService {
   login(userData: any): Observable<User | null> {
     return this.http.post<any>(`${this.authUrl}/login`, userData, { withCredentials: true })
       .pipe(
-        // After a successful POST, call /me to retrieve the user
         switchMap(() => this.getCurrentUser()),
         tap(user => {
           console.log('Fetched user:', user);
