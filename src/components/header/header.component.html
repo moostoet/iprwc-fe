@@ -4,7 +4,12 @@
       <h1 class="text-2xl">The Ball Shop</h1>
 
       <a [routerLink]="['/']" class="text-green-300">Shop</a>
-      <a *ngIf="authService.currentUser$.getValue()?.role?.includes('ADMIN')" [routerLink]="['/admin']" class="text-green-300">Admin</a>
+      <a
+        *ngIf="authService.currentUser$.getValue()?.role?.includes('ADMIN')"
+        [routerLink]="['/admin']"
+        class="text-green-300"
+        >Admin</a
+      >
     </div>
 
     <ng-container *ngIf="authService.currentUser$ | async as user; else guest">
